@@ -3,12 +3,12 @@ import MyButton from './UI/button/MyButton';
 import MyInput from './UI/input/MyInput';
 import { useState } from 'react';
 
-const PostForm = ({create, posts}) => {
+const PostForm = ({create}) => {
     const [post,setPost] = useState({title: '',body: ''});
     const addNewPost = (e) => {
         e.preventDefault();
         const newPost = {
-            ...post, id: posts.length+1
+            ...post, id: Date.now()
         }
         create(newPost)
         setPost({title: '',body: ''});

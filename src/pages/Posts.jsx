@@ -76,7 +76,7 @@ const changePage = (page) => {
    <div className="App">
      <MyButton style={{marginTop:'30px'}} onClick={() => setModal(true)}>Create User</MyButton>
      <MyModal visible={modal} setVisible={setModal}>
-       <PostForm posts={sortedAndSearch} create={createPost}/>
+       <PostForm create={createPost}/>
      </MyModal>
      
      <hr style={{margin:"15px"}} />
