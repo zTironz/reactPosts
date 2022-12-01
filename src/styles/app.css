@@ -11,17 +11,18 @@
   }
 
 .App {
-    width: 800px;
+    max-width: 1440px;
 }
 
 
 .post {
-    display: flex;
-    padding: 15px;
-    border: 2px solid teal;
-    margin-top: 15px;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  padding: 15px;
+  border: 2px solid teal;
+  margin-top: 15px;
+  justify-content: space-between;
+  gap: 15px;
+  align-items: center;
 }
 
 .post__buttons {
@@ -63,6 +64,7 @@
   .navbar {
      height: 50px;
      width: 100vw;
+     max-width: 1440px;
      display: flex;
      align-items: center;
      padding: 0 15px;
@@ -71,4 +73,15 @@
 
   .navbar__links {
     margin-left: auto;
+  }
+
+  .about__heading {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25px;
+    color: rgb(62, 62, 100);
+  }
+
+  .navbar__link {
+    text-decoration: none;
+    margin-left: 15px;
   }
