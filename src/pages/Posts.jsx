@@ -36,23 +36,24 @@ function Posts() {
 
 
  const sortedAndSearch = usePosts(posts,filter.sort,filter.query);
- const lastElement = useRef()
+//  const lastElement = useRef()
 
 
 const [fetchPosts, isPostsLoading, postError ] = useFetching(async (limit,page) => {
  const response = await PostService.getAll(limit,page);
-     setPosts([...posts, ...response.data]);
+     setPosts(response.data);
      const totalCount = response.headers['x-total-count'];
      setTotalPages(getPageCount(totalCount,limit));
 })
 
-useObserver(lastElement, page < totalPages, isPostsLoading, () => {
-    setPage(page + 1)
-})
+// useObserver(lastElement, page < totalPages, isPostsLoading, () => {
+//     setPage(page + 1)
+// })
 
  useEffect(() => {
    fetchPosts(limit,page)
- }, [page, limit])
+ // eslint-disable-next-line react-hooks/exhaustive-deps
+ }, [limit, page])
 
  const createPost = (newPost) => {
    setPosts([...posts, newPost]);
@@ -69,6 +70,7 @@ useObserver(lastElement, page < totalPages, isPostsLoading, () => {
 
 const changePage = (page) => {
  setPage(page)
+ fetchPosts(limit,page)
 }
 
  
@@ -85,7 +87,7 @@ const changePage = (page) => {
      options={[{value: 5, name: '5'},{value: 10, name: '10'},{value: 25, name: '25'},{value: -1, name: 'Show All '}]}/> */}
      {postError && <h1>Error ${postError}</h1>}
      <PostsList remove={removePost} title="Posts List JS" posts={sortedAndSearch}/>
-     <div  ref={lastElement} style={{height: 20, background: 'red'}}/>
+     {/* <div  ref={lastElement} style={{height: 20, background: 'red'}}/> */}
      {isPostsLoading &&
        <div style={{display: "flex", justifyContent: "center"}}><Loader/></div>
      }
